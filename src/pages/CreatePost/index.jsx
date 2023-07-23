@@ -1,10 +1,10 @@
-import { Form } from "../../components/Form";
-import "./styles.css";
+import { Form } from "../../components/Form"
+import "./styles.css"
 
 export function CreatePost() {
   return (
     <div>
-      <Form />
+      <Form title={"Criar Publicação"} textButton={"Enviar"} />
     </div>
-  );
+  )
 }

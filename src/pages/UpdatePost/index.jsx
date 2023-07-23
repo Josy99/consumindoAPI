@@ -1,9 +1,9 @@
-import { Form } from "../../components/Form";
+import { Form } from "../../components/Form"
 
 export function UpdatePost() {
-    return (
-        <div>
-            <Form />
-        </div>
-    )
+  return (
+    <div>
+      <Form title={"Editar Publicação"} textButton={"Editar"} />
+    </div>
+  )
 }

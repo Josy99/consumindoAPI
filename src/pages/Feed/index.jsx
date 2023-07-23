@@ -19,8 +19,8 @@ export function Feed() {
 
   return (
     <div className="feedContainer">
-      {posts.map((item, index) => (
-        <Card item={item} key={index} />
+      {posts.map((post) => (
+        <Card key={post.id} post={post} />
       ))}
     </div>
   )
