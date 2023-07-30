@@ -9,8 +9,8 @@ export function Router() {
     <Routes>
       <Route path="/" element={<Feed />} />
       <Route path="/createPost" element={<CreatePost />} />
-      <Route path="/updatePost" element={<UpdatePost />} />
-      <Route path="/onePost" element={<OnePost />} />
+      <Route path="/updatePost/:id" element={<UpdatePost />} />
+      <Route path="/onePost/:id" element={<OnePost />} />
     </Routes>
   )
 }

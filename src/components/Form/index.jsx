@@ -3,6 +3,9 @@ import "./styles.css"
 import { api } from "../../lib/axios"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { useParams } from "react-router-dom"
+import { useEffect } from "react"
+// import { useNavigate } from "react-router-dom"
 
 const postSchema = yup.object({
   title: yup.string().required(" O campo title não pode estar vazío"),
@@ -12,7 +15,8 @@ const postSchema = yup.object({
   content: yup.string().required(" O content  não pode estar vazío"),
 })
 
-export function Form({ title, textButton }) {
+export function Form({ title, textButton, onAction }) {
+  const { id } = useParams()
   const {
     register,
     handleSubmit,
@@ -21,15 +25,17 @@ export function Form({ title, textButton }) {
   } = useForm({
     resolver: yupResolver(postSchema),
   })
-
-  function handleCreatePost(data) {
-    api.post("/posts", data)
-    console.log("Post criado !")
-    reset()
+  //resultado dos dados por editar
+  async function getDataUpdate() {
+    const response = await api.get(`/posts/${id}`)
+    reset(response.data)
   }
-
+  useEffect(() => {
+    getDataUpdate()
+  }, [])
+  //
   return (
-    <form onSubmit={handleSubmit(handleCreatePost)}>
+    <form onSubmit={handleSubmit(onAction)}>
       <h2>{title}</h2>
       <div className="field">
         <input placeholder="Título" {...register("title")} />

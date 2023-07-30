@@ -16,11 +16,16 @@ export function Feed() {
         console.log(err)
       })
   }, [])
+  //Eliminando comentário
+  function handleDeletePost(id) {
+    setPosts(posts.filter((post) => post.id !== id))
+    api.delete(`/posts/${id}`)
+  }
 
   return (
     <div className="feedContainer">
       {posts.map((post) => (
-        <Card key={post.id} post={post} />
+        <Card key={post.id} post={post} onDeletepost={handleDeletePost} />
       ))}
     </div>
   )
